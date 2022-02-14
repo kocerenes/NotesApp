@@ -17,8 +17,8 @@ class NotesAppAdapter(var notesList: ArrayList<String>): RecyclerView.Adapter<No
     }
 
     override fun onBindViewHolder(holder: NotesHolder, position: Int) {
-        holder.binding.recyclerRowTextView.text = notesList.get(position).toString()
-
+        holder.binding.recyclerRowDateText.text=notesList.get(position).toString()
+        holder.binding.recyclerRowNoteText.text = notesList.get(position).toString()
     }
 
     override fun getItemCount(): Int {

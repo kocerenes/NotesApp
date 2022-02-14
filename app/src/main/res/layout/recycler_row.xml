@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:paddingTop="6dp"
-    android:paddingBottom="6dp"
-    android:paddingLeft="50dp"
-    android:paddingRight="50dp">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    app:cardBackgroundColor="#6441A5"
+    android:layout_margin="10dp"
+    app:cardElevation="8dp">
 
-    <TextView
-        android:id="@+id/recyclerRowTextView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="#6441A5"
-        android:textColor="#F8323333"
-        android:text="afasasd"
-        android:textSize="20dp"
-        android:textStyle="bold"></TextView>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recyclerRowDateText"
+            android:textColor="#F8323333"
+            android:textSize="21dp"
+            android:text="Title"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="10dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/recyclerRowNoteText"
+            android:textColor="#F8323333"
+            android:textSize="21dp"
+            android:text="Title"
+
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="10dp"/>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
