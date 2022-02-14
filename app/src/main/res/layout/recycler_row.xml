@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp">
+
+    <TextView
+        android:id="@+id/recyclerRowTextView"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#6441A5"
+        android:textColor="#F8323333"
+        android:text="afasasd"
+        android:textSize="20dp"
+        android:textStyle="bold"></TextView>
+</LinearLayout>
