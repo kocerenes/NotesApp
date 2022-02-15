@@ -43,6 +43,7 @@ class NoteTransactionFragment : Fragment() {
         var user = Firebase.auth.currentUser
         var db = FirebaseFirestore.getInstance()
         binding.saveButton.setOnClickListener {
+
             if (user!=null){
                 var note = Note(user.uid, Timestamp.now(),binding.addNoteText.text.toString())
 
@@ -51,7 +52,7 @@ class NoteTransactionFragment : Fragment() {
                     "date" to note.date,
                     "note" to note.note
                 )
-                db.collection("notes").document(note.id)
+                db.collection(user.uid).document(note.id)
                     .set(noteMap)
                     .addOnSuccessListener { Toast.makeText(context,"Transaction Successful",Toast.LENGTH_LONG).show() }
                     .addOnFailureListener{it.localizedMessage}

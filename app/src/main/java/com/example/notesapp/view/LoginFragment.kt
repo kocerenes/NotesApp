@@ -56,10 +56,15 @@ class LoginFragment : Fragment() {
             auth.createUserWithEmailAndPassword(email,password).addOnSuccessListener {
                 val action = LoginFragmentDirections.actionLoginFragmentToNotesFragment()
                 Navigation.findNavController(view).navigate(action)
+
                 }.addOnFailureListener{
                 Toast.makeText(context,it.localizedMessage,Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    fun signIn(){
+
     }
 
     override fun onDestroyView() {
