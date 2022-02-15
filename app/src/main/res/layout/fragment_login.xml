@@ -7,7 +7,6 @@
     tools:context=".view.LoginFragment"
     android:background="#F8323333">
 
-
     <TextView
         android:id="@+id/appNameText"
         android:layout_width="268dp"

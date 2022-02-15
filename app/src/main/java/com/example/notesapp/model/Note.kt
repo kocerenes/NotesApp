@@ -1,5 +1,5 @@
 package com.example.notesapp.model
 
-import java.time.LocalDateTime
+import com.google.firebase.Timestamp
 
-data class Note(var email : String,var date : LocalDateTime, var note : String)
+data class Note(var id : Int,var date : Timestamp, var note : String)

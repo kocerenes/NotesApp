@@ -6,42 +6,40 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.notesapp.adapter.NotesAppAdapter
 import com.example.notesapp.databinding.FragmentNotesBinding
 
 class NotesFragment : Fragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-
-    }
     private var _binding: FragmentNotesBinding? = null
     private val binding get() = _binding!!
-    private lateinit var notesList:ArrayList<String>
+
+    private lateinit var notesList: ArrayList<String>
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentNotesBinding.inflate(inflater, container, false)
-        val view = binding.root
-        notesList = ArrayList<String>()
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        notesList = ArrayList()
         notesList.add("1")
         notesList.add("2")
         notesList.add("3")
         notesList.add("4")
         notesList.add("5")
         notesList.add("6")
-        return view
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.recyclerView.layoutManager= GridLayoutManager(context,2)
+        binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
         val notesAppAdapter = NotesAppAdapter(notesList)
-        binding.recyclerView.adapter=notesAppAdapter
+        binding.recyclerView.adapter = notesAppAdapter
     }
-
 
 }
