@@ -5,8 +5,9 @@
       <map>
         <entry key="..\:/Users/emirk/AndroidStudioProjects/NotesApp/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/emirk/AndroidStudioProjects/NotesApp/app/src/main/res/layout/fragment_login.xml" value="0.33" />
+        <entry key="..\:/Users/emirk/AndroidStudioProjects/NotesApp/app/src/main/res/layout/fragment_note_transaction.xml" value="0.358695652173913" />
         <entry key="..\:/Users/emirk/AndroidStudioProjects/NotesApp/app/src/main/res/layout/fragment_notes.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/emirk/AndroidStudioProjects/NotesApp/app/src/main/res/layout/recycler_row.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/emirk/AndroidStudioProjects/NotesApp/app/src/main/res/layout/recycler_row.xml" value="0.33" />
         <entry key="..\:/Users/enes/AndroidStudioProjects/NotesApp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/enes/AndroidStudioProjects/NotesApp/app/src/main/res/layout/fragment_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/enes/AndroidStudioProjects/NotesApp/app/src/main/res/layout/fragment_notes.xml" value="0.14945652173913043" />
