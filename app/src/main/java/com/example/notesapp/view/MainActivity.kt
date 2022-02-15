@@ -3,6 +3,7 @@ package com.example.notesapp.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.notesapp.databinding.ActivityMainBinding
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,8 +14,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-
 
     }
 }

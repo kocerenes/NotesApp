@@ -2,4 +2,4 @@ package com.example.notesapp.model
 
 import java.time.LocalDateTime
 
-data class Note(var date : LocalDateTime, var note : String)
+data class Note(var email : String,var date : LocalDateTime, var note : String)
