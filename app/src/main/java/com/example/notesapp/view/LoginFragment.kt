@@ -41,8 +41,17 @@ class LoginFragment : Fragment() {
         // Initialize Firebase Auth
         auth = Firebase.auth
 
+        val currentUser = auth.currentUser
+        if (currentUser != null){
+            val action = LoginFragmentDirections.actionLoginFragmentToNotesFragment()
+            Navigation.findNavController(view).navigate(action)
+        }
+
         binding.signUpButton.setOnClickListener{
             signUp(it)
+        }
+        binding.signInButton.setOnClickListener{
+            signIn(it)
         }
     }
 
@@ -63,7 +72,22 @@ class LoginFragment : Fragment() {
         }
     }
 
-    fun signIn(){
+    fun signIn(view : View){
+
+        val email = binding.emailEditText.text.toString()
+        val password = binding.passwordEditText.text.toString()
+
+        if (email.equals("") || password.equals("")){
+            Toast.makeText(context,"Email or password is incorrect",Toast.LENGTH_LONG).show()
+        }else{
+            auth.signInWithEmailAndPassword(email,password).addOnSuccessListener {
+                //it.user!!.email
+                val action = LoginFragmentDirections.actionLoginFragmentToNotesFragment()
+                Navigation.findNavController(view).navigate(action)
+            }.addOnFailureListener{
+                Toast.makeText(context,it.localizedMessage,Toast.LENGTH_LONG).show()
+            }
+        }
 
     }
 
