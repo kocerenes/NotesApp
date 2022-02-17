@@ -4,8 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notesapp.databinding.RecyclerRowBinding
+import com.example.notesapp.model.Note
 
-class NotesAppAdapter(var notesList: ArrayList<String>): RecyclerView.Adapter<NotesAppAdapter.NotesHolder>() {
+class NotesAppAdapter(var notesList: ArrayList<Note>): RecyclerView.Adapter<NotesAppAdapter.NotesHolder>() {
 
     class NotesHolder(val binding: RecyclerRowBinding):RecyclerView.ViewHolder(binding.root){
 
@@ -17,8 +18,8 @@ class NotesAppAdapter(var notesList: ArrayList<String>): RecyclerView.Adapter<No
     }
 
     override fun onBindViewHolder(holder: NotesHolder, position: Int) {
-        holder.binding.recyclerRowDateText.text=notesList.get(position).toString()
-        holder.binding.recyclerRowNoteText.text = notesList.get(position).toString()
+        holder.binding.recyclerRowDateText.text=notesList.get(position).date.toDate().toString()
+        holder.binding.recyclerRowNoteText.text = notesList.get(position).note
     }
 
     override fun getItemCount(): Int {

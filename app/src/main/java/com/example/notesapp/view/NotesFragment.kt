@@ -2,6 +2,7 @@ package com.example.notesapp.view
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -9,16 +10,21 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.notesapp.R
 import com.example.notesapp.adapter.NotesAppAdapter
 import com.example.notesapp.databinding.FragmentNotesBinding
+import com.example.notesapp.model.Note
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class NotesFragment : Fragment() {
     private var _binding: FragmentNotesBinding? = null
     private val binding get() = _binding!!
-    private lateinit var notesList:ArrayList<String>
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var dataBase : FirebaseFirestore
+    private lateinit var noteArrayList : ArrayList<Note>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,30 +33,49 @@ class NotesFragment : Fragment() {
     ): View? {
         _binding = FragmentNotesBinding.inflate(inflater, container, false)
         val view = binding.root
-        notesList = ArrayList<String>()
-        notesList.add("1")
-        notesList.add("2")
-        notesList.add("3")
-        notesList.add("4")
-        notesList.add("5")
-        notesList.add("6")
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.recyclerView.layoutManager= GridLayoutManager(context,2)
-        val notesAppAdapter = NotesAppAdapter(notesList)
-        binding.recyclerView.adapter=notesAppAdapter
-
         auth = Firebase.auth
+
+        dataBase = Firebase.firestore
+        val auth = Firebase.auth.currentUser
+        noteArrayList = ArrayList<Note>()
+        getNotes()
+
+        binding.recyclerView.layoutManager= GridLayoutManager(context,2)
+        val notesAppAdapter = NotesAppAdapter(noteArrayList)
+        binding.recyclerView.adapter=notesAppAdapter
 
         setHasOptionsMenu(true)
 
+        //not ekleme sayfasına geçiş
         binding.addNoteButton.setOnClickListener {
             val action = NotesFragmentDirections.actionNotesFragmentToNoteTransactionFragment()
             Navigation.findNavController(it).navigate(action)
+        }
+    }
+
+    private fun getNotes(){
+        dataBase.collection(auth.uid.toString()).addSnapshotListener { value, error ->
+            if (error != null){
+                Toast.makeText(context,error.localizedMessage,Toast.LENGTH_LONG).show()
+            }else{
+                if (value != null){
+                    if (!value.isEmpty){
+                        val documents = value.documents
+                        for (document in documents){
+                            val date = document.get("date") as Timestamp
+                            val note = document.get("note") as String
+                            val noteList = Note("1",date, note)
+                            noteArrayList!!.add(noteList)
+                        }
+                    }
+                }
+            }
         }
     }
 

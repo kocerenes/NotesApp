@@ -52,7 +52,8 @@ class NoteTransactionFragment : Fragment() {
                     "date" to note.date,
                     "note" to note.note
                 )
-                db.collection(user.uid).document(note.id)
+                val uuid = UUID.randomUUID()
+                db.collection(user.uid).document(uuid.toString())
                     .set(noteMap)
                     .addOnSuccessListener { Toast.makeText(context,"Transaction Successful",Toast.LENGTH_LONG).show() }
                     .addOnFailureListener{it.localizedMessage}
