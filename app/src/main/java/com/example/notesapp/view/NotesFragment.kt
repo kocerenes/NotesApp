@@ -23,36 +23,35 @@ class NotesFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var dataBase : FirebaseFirestore
-    private lateinit var noteArrayList : ArrayList<Note>
+    private lateinit var dataBase: FirebaseFirestore
+    private lateinit var noteArrayList: ArrayList<Note>
+    private lateinit var notesAppAdapter: NotesAppAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
+    ): View {
         _binding = FragmentNotesBinding.inflate(inflater, container, false)
         val view = binding.root
-        auth = Firebase.auth
-
-        dataBase = Firebase.firestore
-        val auth = Firebase.auth.currentUser
-        noteArrayList = ArrayList<Note>()
-        getNotes()
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        noteArrayList = ArrayList<Note>()
 
-
-        binding.recyclerView.layoutManager= GridLayoutManager(context,2)
-        val notesAppAdapter = NotesAppAdapter(noteArrayList)
-        binding.recyclerView.adapter=notesAppAdapter
+        binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
+        notesAppAdapter = NotesAppAdapter(requireContext())
+        binding.recyclerView.adapter = notesAppAdapter
 
         setHasOptionsMenu(true)
+
+        auth = Firebase.auth
+
+        dataBase = Firebase.firestore
+        getNotes()
 
         //not ekleme sayfasına geçiş
         val fab: View = binding.fabBtn
@@ -62,26 +61,27 @@ class NotesFragment : Fragment() {
         }
     }
 
-    private fun getNotes(){
+    private fun getNotes() {
+        noteArrayList.clear()
         dataBase.collection(auth.uid.toString()).addSnapshotListener { value, error ->
-            if (error != null){
-                Toast.makeText(context,error.localizedMessage,Toast.LENGTH_LONG).show()
-            }else{
-                if (value != null){
-                    if (!value.isEmpty){
+            if (error != null) {
+                Toast.makeText(context, error.localizedMessage, Toast.LENGTH_LONG).show()
+            } else {
+                if (value != null) {
+                    if (!value.isEmpty) {
                         val documents = value.documents
-                        for (document in documents){
+                        for (document in documents) {
                             val date = document.get("date") as Timestamp
                             val note = document.get("note") as String
-                            val noteList = Note("1",date, note)
-                            noteArrayList!!.add(noteList)
+                            val noteList = Note("1", date, note)
+                            noteArrayList.add(noteList)
                         }
+                        notesAppAdapter.notesList = noteArrayList
                     }
                 }
             }
         }
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.exit_menu, menu)
@@ -90,7 +90,7 @@ class NotesFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.signout){
+        if (item.itemId == R.id.signout) {
             auth.signOut()
             findNavController().navigate(R.id.action_notesFragment_to_loginFragment)
         }
