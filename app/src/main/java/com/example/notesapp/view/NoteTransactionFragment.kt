@@ -48,7 +48,7 @@ class NoteTransactionFragment : Fragment() {
                 var note = Note(user.uid, Timestamp.now(),binding.addNoteText.text.toString())
 
                 val noteMap = hashMapOf(
-                    "email" to note.id,
+                    "id" to note.id,
                     "date" to note.date,
                     "note" to note.note
                 )

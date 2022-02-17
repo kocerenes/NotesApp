@@ -31,20 +31,22 @@ class NotesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         _binding = FragmentNotesBinding.inflate(inflater, container, false)
         val view = binding.root
-        return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         auth = Firebase.auth
 
         dataBase = Firebase.firestore
         val auth = Firebase.auth.currentUser
         noteArrayList = ArrayList<Note>()
         getNotes()
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
 
         binding.recyclerView.layoutManager= GridLayoutManager(context,2)
         val notesAppAdapter = NotesAppAdapter(noteArrayList)
@@ -53,9 +55,10 @@ class NotesFragment : Fragment() {
         setHasOptionsMenu(true)
 
         //not ekleme sayfasına geçiş
-        binding.addNoteButton.setOnClickListener {
+        val fab: View = binding.fabBtn
+        fab.setOnClickListener { view ->
             val action = NotesFragmentDirections.actionNotesFragmentToNoteTransactionFragment()
-            Navigation.findNavController(it).navigate(action)
+            Navigation.findNavController(view).navigate(action)
         }
     }
 
