@@ -27,10 +27,21 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_notesFragment_to_updateNoteFragment"
+            app:destination="@id/updateNoteFragment" />
     </fragment>
     <fragment
         android:id="@+id/noteTransactionFragment"
         android:name="com.example.notesapp.view.NoteTransactionFragment"
         android:label="fragment_note_transaction"
         tools:layout="@layout/fragment_note_transaction" />
+    <fragment
+        android:id="@+id/updateNoteFragment"
+        android:name="com.example.notesapp.view.UpdateNoteFragment"
+        android:label="UpdateNoteFragment" >
+        <argument
+            android:name="note"
+            app:argType="com.example.notesapp.model.Note" />
+    </fragment>
 </navigation>

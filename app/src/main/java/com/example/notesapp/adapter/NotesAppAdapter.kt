@@ -8,10 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notesapp.R
 import com.example.notesapp.databinding.RecyclerRowBinding
 import com.example.notesapp.model.Note
+import com.example.notesapp.view.NotesFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -46,7 +48,7 @@ class NotesAppAdapter(var context : Context): RecyclerView.Adapter<NotesAppAdapt
 
             println(notesList[position].note)
 
-            val snack = Snackbar.make(it,"Silmek istediğinize emin misiniz?",Snackbar.LENGTH_INDEFINITE)
+            val snack = Snackbar.make(it,"Silmek istediğinize emin misiniz?",Snackbar.LENGTH_LONG)
 
             snack.setAction("YES", View.OnClickListener {
                 // executed when DISMISS is clicked
@@ -63,6 +65,12 @@ class NotesAppAdapter(var context : Context): RecyclerView.Adapter<NotesAppAdapt
             snack.show()
 
             return@setOnLongClickListener true
+        }
+
+        //emirin
+        holder.binding.cardView.setOnClickListener {
+            val action = NotesFragmentDirections.actionNotesFragmentToUpdateNoteFragment(notesList[position])
+            Navigation.findNavController(it).navigate(action)
         }
 
     }
