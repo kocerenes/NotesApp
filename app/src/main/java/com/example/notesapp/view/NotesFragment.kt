@@ -71,9 +71,11 @@ class NotesFragment : Fragment() {
                     if (!value.isEmpty) {
                         val documents = value.documents
                         for (document in documents) {
+                            val id = document.get("id") as Any?
                             val date = document.get("date") as Timestamp
                             val note = document.get("note") as String
-                            val noteList = Note("1", date, note)
+                            val documentId = document.get("documentId") as Any?
+                            val noteList = Note(id.toString(), documentId.toString() ,date, note)
                             noteArrayList.add(noteList)
                         }
                         notesAppAdapter.notesList = noteArrayList

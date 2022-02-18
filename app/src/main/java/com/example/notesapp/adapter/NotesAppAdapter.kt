@@ -3,6 +3,7 @@ package com.example.notesapp.adapter
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +13,14 @@ import com.example.notesapp.R
 import com.example.notesapp.databinding.RecyclerRowBinding
 import com.example.notesapp.model.Note
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.NonCancellable.cancel
 
 class NotesAppAdapter(var context : Context): RecyclerView.Adapter<NotesAppAdapter.NotesHolder>() {
+
+    private lateinit var db : FirebaseFirestore
 
     var notesList = listOf<Note>()
         set(value) {
@@ -33,7 +39,31 @@ class NotesAppAdapter(var context : Context): RecyclerView.Adapter<NotesAppAdapt
         holder.binding.recyclerRowDateText.text=notesList.get(position).date.toDate().toString()
         holder.binding.recyclerRowNoteText.text = notesList.get(position).note
 
+        db = Firebase.firestore
 
+        //uzun basıldıgında silmek isteyip istemediğimizi soracak olan fonksiyon
+        holder.binding.cardView.setOnLongClickListener {
+
+            println(notesList[position].note)
+
+            val snack = Snackbar.make(it,"Silmek istediğinize emin misiniz?",Snackbar.LENGTH_INDEFINITE)
+
+            snack.setAction("YES", View.OnClickListener {
+                // executed when DISMISS is clicked
+                println(notesList[position].id)
+                db.collection(notesList[position].id).document(notesList[position].documentId)
+                    .delete()
+                    .addOnSuccessListener {
+                        Toast.makeText(context,"DocumentSnapshot successfully deleted!",Toast.LENGTH_LONG).show()
+                        notifyDataSetChanged()
+                    }
+                    .addOnFailureListener { e -> e.localizedMessage}
+                System.out.println(notesList[position].documentId)
+            })
+            snack.show()
+
+            return@setOnLongClickListener true
+        }
 
     }
 

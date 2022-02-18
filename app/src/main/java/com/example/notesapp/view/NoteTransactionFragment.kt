@@ -44,15 +44,17 @@ class NoteTransactionFragment : Fragment() {
         var db = FirebaseFirestore.getInstance()
         binding.saveButton.setOnClickListener {
 
+            val uuid = UUID.randomUUID()
             if (user!=null){
-                var note = Note(user.uid, Timestamp.now(),binding.addNoteText.text.toString())
+                var note = Note(user.uid, uuid.toString() ,Timestamp.now(),binding.addNoteText.text.toString())
 
                 val noteMap = hashMapOf(
                     "id" to note.id,
+                    "documentId" to note.documentId,
                     "date" to note.date,
                     "note" to note.note
                 )
-                val uuid = UUID.randomUUID()
+
                 db.collection(user.uid).document(uuid.toString())
                     .set(noteMap)
                     .addOnSuccessListener { Toast.makeText(context,"Transaction Successful",Toast.LENGTH_LONG).show() }
