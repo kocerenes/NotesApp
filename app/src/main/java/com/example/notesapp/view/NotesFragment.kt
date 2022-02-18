@@ -11,6 +11,7 @@ import com.example.notesapp.R
 import com.example.notesapp.adapter.NotesAppAdapter
 import com.example.notesapp.databinding.FragmentNotesBinding
 import com.example.notesapp.model.Note
+import com.example.notesapp.util.AdapterClickListener
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -18,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class NotesFragment : Fragment() {
+class NotesFragment : Fragment(), AdapterClickListener {
     private var _binding: FragmentNotesBinding? = null
     private val binding get() = _binding!!
 
@@ -33,17 +34,16 @@ class NotesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNotesBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        noteArrayList = ArrayList<Note>()
+        noteArrayList = ArrayList()
 
         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
-        notesAppAdapter = NotesAppAdapter(requireContext())
+        notesAppAdapter = NotesAppAdapter(requireContext(), this)
         binding.recyclerView.adapter = notesAppAdapter
 
         setHasOptionsMenu(true)
@@ -55,9 +55,9 @@ class NotesFragment : Fragment() {
 
         //not ekleme sayfasına geçiş
         val fab: View = binding.fabBtn
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener {
             val action = NotesFragmentDirections.actionNotesFragmentToNoteTransactionFragment()
-            Navigation.findNavController(view).navigate(action)
+            Navigation.findNavController(it).navigate(action)
         }
     }
 
@@ -71,12 +71,13 @@ class NotesFragment : Fragment() {
                     if (!value.isEmpty) {
                         val documents = value.documents
                         for (document in documents) {
-                            val id = document.get("id") as Any?
+                            val id = document.get("id")
                             val date = document.get("date") as Timestamp
                             val note = document.get("note") as String
-                            val documentId = document.get("documentId") as Any?
+                            val documentId = document.get("documentId")
                             val noteList = Note(id.toString(), documentId.toString() ,date, note)
                             noteArrayList.add(noteList)
+                            println(document.get("id"))
                         }
                         notesAppAdapter.notesList = noteArrayList
                     }
@@ -97,6 +98,10 @@ class NotesFragment : Fragment() {
             findNavController().navigate(R.id.action_notesFragment_to_loginFragment)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun adapterClickListener() {
+        getNotes()
     }
 
 }

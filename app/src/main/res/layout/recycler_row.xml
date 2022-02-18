@@ -1,40 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="5dp"
-    app:cardBackgroundColor="#6441A5"
     android:layout_margin="10dp"
+    app:cardBackgroundColor="#6441A5"
+    app:cardCornerRadius="5dp"
     app:cardElevation="8dp">
 
     <LinearLayout
         android:id="@+id/recyclerLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:clickable="true">
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/recyclerRowDateText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recyclerRowDateText"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="10dp"
             android:textColor="#F8323333"
-            android:textSize="21dp"
-            android:text="Title"
-            android:layout_marginLeft="14dp"
-            android:layout_marginRight="10dp"/>
+            android:textSize="21sp" />
+
         <TextView
+            android:id="@+id/recyclerRowNoteText"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:id="@+id/recyclerRowNoteText"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="10dp"
             android:textColor="#F8323333"
-            android:textSize="21dp"
-            android:text="Title"
-
-            android:layout_marginLeft="14dp"
-            android:layout_marginRight="10dp"/>
+            android:textSize="21sp" />
 
 
     </LinearLayout>
