@@ -5,4 +5,4 @@ import com.google.firebase.Timestamp
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Note(var id : String, var documentId : String, var date : Timestamp, var note : String):Parcelable
+data class Note(var id : String, var documentId : String, var date : Timestamp, var note : String) : Parcelable

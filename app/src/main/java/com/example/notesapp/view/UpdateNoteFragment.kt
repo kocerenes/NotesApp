@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.example.notesapp.R
-import com.example.notesapp.databinding.FragmentNoteTransactionBinding
 import com.example.notesapp.databinding.FragmentUpdateNoteBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore

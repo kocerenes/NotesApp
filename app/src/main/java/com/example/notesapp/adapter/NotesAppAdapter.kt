@@ -73,6 +73,7 @@ class NotesAppAdapter(var context : Context): RecyclerView.Adapter<NotesAppAdapt
             Navigation.findNavController(it).navigate(action)
         }
 
+
     }
 
     override fun getItemCount(): Int {
