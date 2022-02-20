@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginEnd="10dp"
-            android:textColor="#F8323333"
+            android:textColor="@color/white"
             android:textSize="21sp" />
 
         <TextView
@@ -30,7 +30,7 @@
             android:layout_height="100dp"
             android:layout_marginStart="14dp"
             android:layout_marginEnd="10dp"
-            android:textColor="#F8323333"
+            android:textColor="@color/white"
             android:textSize="21sp" />
 
 

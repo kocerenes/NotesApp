@@ -18,6 +18,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class NotesFragment : Fragment(), AdapterClickListener {
     private var _binding: FragmentNotesBinding? = null

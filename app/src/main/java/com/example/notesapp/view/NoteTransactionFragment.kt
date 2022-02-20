@@ -48,7 +48,6 @@ class NoteTransactionFragment : Fragment() {
             val uuid = UUID.randomUUID()
             if (user!=null){
                 var note = Note(user.uid, uuid.toString() ,Timestamp.now(),binding.addNoteText.text.toString())
-
                 val noteMap = hashMapOf(
                     "id" to note.id,
                     "documentId" to note.documentId,

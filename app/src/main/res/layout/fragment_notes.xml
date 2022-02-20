@@ -27,7 +27,7 @@
         android:backgroundTint="#6441A5"
         android:clickable="true"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_baseline_add_48"
+        android:src="@drawable/ic_baseline_add_50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:focusable="true" />
