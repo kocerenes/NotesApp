@@ -4,10 +4,9 @@ In this repository we made note storage app with Android. Written in Kotlin impl
 
 Screenshots
 -----------
-![Sign in and sign up](screenshots/login.png)
-![Home page](screenshots/homepage.png)
-![Add note](screenshots/savenote.png)
-
+<img src="screenshots/login.png" alt="signinAndSignup" width="200"/>
+<img src="screenshots/homepage.png" alt="homepage" width="200"/>
+<img src="screenshots/savenote.png" alt="addnote" width="200"/>
 
 Libraries Used
 * [Foundation][0] - Components for core system capabilities, Kotlin extensions and support for
