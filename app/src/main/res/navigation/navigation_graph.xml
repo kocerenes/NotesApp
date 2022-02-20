@@ -35,7 +35,11 @@
         android:id="@+id/noteTransactionFragment"
         android:name="com.example.notesapp.view.NoteTransactionFragment"
         android:label="fragment_note_transaction"
-        tools:layout="@layout/fragment_note_transaction" />
+        tools:layout="@layout/fragment_note_transaction" >
+        <action
+            android:id="@+id/action_noteTransactionFragment_to_notesFragment"
+            app:destination="@id/notesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/updateNoteFragment"
         android:name="com.example.notesapp.view.UpdateNoteFragment"
@@ -43,5 +47,8 @@
         <argument
             android:name="note"
             app:argType="com.example.notesapp.model.Note" />
+        <action
+            android:id="@+id/action_updateNoteFragment_to_notesFragment"
+            app:destination="@id/notesFragment" />
     </fragment>
 </navigation>

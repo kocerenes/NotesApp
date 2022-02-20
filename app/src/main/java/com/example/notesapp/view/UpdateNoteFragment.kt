@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.notesapp.R
 import com.example.notesapp.databinding.FragmentUpdateNoteBinding
@@ -41,7 +42,8 @@ class UpdateNoteFragment : Fragment() {
         binding.updateNoteButton.setOnClickListener {
             dataBase.collection(note.id).document(note.documentId).update("note",binding.updateNoteText.text.toString())
             println(note.id + " "+ note.documentId)
-
+            val action = UpdateNoteFragmentDirections.actionUpdateNoteFragmentToNotesFragment()
+            Navigation.findNavController(it).navigate(action)
         }
     }
 
