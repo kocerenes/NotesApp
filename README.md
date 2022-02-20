@@ -6,7 +6,7 @@ Screenshots
 -----------
 <p float="left">
   <img src="screenshots/login.png" alt="signinAndSignup" width="200"/>
-  <img src="screenshots/homepage.png" alt="homepage" width="200"/>
+  <img src="screenshots/homepagetwo.png" alt="homepage" width="200"/>
   <img src="screenshots/savenote.png" alt="addnote" width="200"/>
 </p>
 
