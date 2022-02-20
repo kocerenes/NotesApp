@@ -11,6 +11,7 @@ Screenshots
 </p>
 
 Libraries Used
+--------------
 * [Foundation][0] - Components for core system capabilities, Kotlin extensions and support for
   multidex and automated testing.
   * [AppCompat][1] - Degrade gracefully on older versions of Android.
